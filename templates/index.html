@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}List of Customers{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}" />
+{% endblock %}
+
+{% block header %}
+<h1>Customers list</h1>
+{% endblock %}
+
+{% block content %}
+  {% if customers %}
+  <div class="table-header surface">
+    <h2>👨‍💼Customers</h2>
+    <a href="/customer/matching" class="create-btn">🔍Find a customer </a>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Mail</th>
+        <th>Telephone</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customers %}
+      <tr
+        style="cursor: pointer"
+        onclick="window.location.href='/customer/{{ customer.ID }}';"
+      >
+        <td>{{ customer.ID }}</td>
+        <td>{{ customer.FirstName }}</td>
+        <td>{{ customer.LastName }}</td>
+        <td>{{ customer.Mail }}</td>
+        <td>{{ customer.Telephone }}</td>
+        <td>↗️</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No customers found.</p>
+  {% endif %}
+{% endblock %}
