@@ -1,112 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
     <title>{% block title %}Template Title{% endblock %}</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/favicon.ico') }}"
+    />
 
     <!-- Fonts & Main Styles -->
-    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700,900" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link
+      href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}"
+      rel="stylesheet"
+    />
 
     {% block styles %}{% endblock %}
-</head>
+  </head>
 
-<body id="page-top">
-
+  <body id="page-top">
     <div id="wrapper">
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion d-flex flex-column justify-content-between" id="accordionSidebar">
+      <!-- Sidebar -->
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion d-flex flex-column justify-content-between"
+        id="accordionSidebar"
+      >
+        <!-- Sidebar - Brand -->
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="/customers"
+        >
+          <div class="sidebar-brand-icon rotate-n-15">
+            <img
+              src="{{ url_for('static', filename='img/brand-light.png') }}"
+              alt="Project Consulting Brand Logo"
+            />
+          </div>
+          <div class="sidebar-brand-text mx-3">DataClient Dashboard</div>
+        </a>
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/customers">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-database"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">DataClient Dashboard</div>
-            </a>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0" />
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading">Menu</div>
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Menu
-            </div>
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+          <a class="nav-link" href="/customers">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Customers</span></a
+          >
+        </li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="/customers">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Customers</span></a>
-            </li>
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+          <a class="nav-link" href="/customer/matching">
+            <i class="fas fa-fw fa-plus"></i>
+            <span>Search or create customer</span></a
+          >
+        </li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="/customer/matching">
-                    <i class="fas fa-fw fa-plus"></i>
-                    <span>Search or create customer</span></a>
-            </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block" />
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-            <div class="mt-auto text-center p-2">
-                <img
-                    src="{{ url_for('static', filename='img/hs-albsig.png') }}"
-                    alt="Project Consulting Logo"
-                    class="img-fluid"
-                />
-            </div>
-
-        </ul>
-
-
-        <!-- End of Sidebar -->
-
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                </nav>
-
-                <!-- Main Content -->
-                <div class="container-fluid">
-                    <h1 class="h3 mb-2 text-gray-800">{% block site_title %}Standardtitel{% endblock %}</h1>
-                    <p class="mb-4">{% block site_description %}Standardbeschreibung{% endblock %}</p>
-                    {% block content %}
-                    {% endblock %}
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="text-center my-auto">
-                        <span>&copy; 2025 - Project Consulting - Azure </span>
-                    </div>
-                </div>
-            </footer>
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
+        <div class="mt-auto text-center p-2">
+          <img
+            src="{{ url_for('static', filename='img/hs-albsig.png') }}"
+            alt="Project Consulting Logo"
+            class="img-fluid"
+          />
+        </div>
+      </ul>
+
+      <!-- End of Sidebar -->
+
+      <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+          <!-- Topbar -->
+          <nav
+            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+          ></nav>
+
+          <!-- Main Content -->
+          <div class="container-fluid">
+            <h1 class="h3 mb-2 text-gray-800">
+              {% block site_title %}Standardtitel{% endblock %}
+            </h1>
+            <p class="mb-4">
+              {% block site_description %}Standardbeschreibung{% endblock %}
+            </p>
+            {% block content %} {% endblock %}
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="text-center my-auto">
+              <span>&copy; 2025 - Project Consulting - Azure </span>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    <a class="scroll-to-top rounded" href="#page-top"
+      ><i class="fas fa-angle-up"></i
+    ></a>
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
@@ -115,6 +139,5 @@
     <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
 
     {% block scripts %}{% endblock %}
-</body>
-
+  </body>
 </html>
