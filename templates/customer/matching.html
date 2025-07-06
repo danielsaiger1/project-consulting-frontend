@@ -44,28 +44,30 @@
       <input type="text" class="form-control" id="City" name="City" required>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <label for="Country" class="form-label">Country</label>
       <input type="text" class="form-control" id="Country" name="Country" required>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <label for="Mail" class="form-label">Mail</label>
       <input type="email" class="form-control" id="Mail" name="Mail" required>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <label for="Telephone" class="form-label">Phone number</label>
       <input type="tel" class="form-control" id="Telephone" name="Telephone">
     </div>
   </div>
 
-  <button id="submit-btn" class="btn btn-primary mt-4" type="submit">
-    Create / Match Customer
-  </button>
-</form>
+  <div class="mt-5 d-flex justify-content-between flex-column flex-sm-row gap-3">
+    <a class="btn btn-outline-primary" href="/customers">&larr; Back to Customer List</a>
 
-<a class="btn btn-link mt-3" href="/customers">&larr; Back to Customer List</a>
+    <button id="submit-btn" class="btn btn-primary" type="submit">
+      Create / Match Customer
+    </button>
+  </div>
+</form>
 
 {% if error %}
   <div class="alert alert-danger mt-4" role="alert">
