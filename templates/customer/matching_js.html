@@ -1,0 +1,145 @@
+{% extends "layout.html" %} {% block title %}Create or Match Customer{% endblock
+%} {% block stylesheet %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='matching.css') }}"
+/>
+{% endblock %}
+{% block content %}
+<form class="form" id="customer-form">
+  <h1>Find or create a customer</h1>
+
+  <div class="field">
+    <label for="FirstName">First Name</label>
+    <input type="text" id="FirstName" name="FirstName" />
+  </div>
+
+  <div class="field">
+    <label for="LastName">Last Name</label>
+    <input type="text" id="LastName" name="LastName" />
+  </div>
+
+  <div class="field">
+    <label for="Street">Street</label>
+    <input type="text" id="Street" name="Street" />
+  </div>
+
+  <div class="field">
+    <label for="HouseNumber">House Number</label>
+    <input type="number" id="HouseNumber" name="HouseNumber" />
+  </div>
+
+  <div class="field">
+    <label for="PostalCode">Postal Code</label>
+    <input type="number" id="PostalCode" name="PostalCode" />
+  </div>
+
+  <div class="field">
+    <label for="City">City</label>
+    <input type="text" id="City" name="City" />
+  </div>
+
+  <div class="field">
+    <label for="Country">Country</label>
+    <input type="text" id="Country" name="Country" />
+  </div>
+
+  <div class="field">
+    <label for="Mail">Mail</label>
+    <input type="email" id="Mail" name="Mail" />
+  </div>
+
+  <div class="field">
+    <label for="Telephone">Phone number</label>
+    <input type="tel" id="Telephone" name="Telephone" />
+  </div>
+
+  <button id="submit-btn" class="submit-btn" type="submit">
+    Create / Match Customer
+  </button>
+</form>
+
+<a class="link" href="/customers">&larr; Back to Customer List</a>
+
+<script defer>
+  function showToast(message, isSuccess = true) {
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.style.backgroundColor = isSuccess ? "#28a745" : "#dc3545";
+    toast.className = "toast show";
+
+    setTimeout(() => {
+      toast.className = "toast";
+    }, 4000);
+  }
+
+  function toggleLoading(isLoading) {
+    const btn = document.getElementById("submit-btn");
+
+    btn.disabled = isLoading;
+
+    btn.textContent = isLoading ? "Loading..." : "Create / Find a Customer";
+  }
+
+  document.getElementById("customer-form").addEventListener("submit", onSubmit);
+
+  async function onSubmit(e) {
+    toggleLoading(true);
+
+    e.preventDefault();
+
+    const firstName = document.getElementById("FirstName").value ?? "";
+    const lastName = document.getElementById("LastName").value ?? "";
+    const street = document.getElementById("Street").value ?? "";
+    const houseNumber = document.getElementById("HouseNumber").value;
+    const postalCode = document.getElementById("PostalCode").value;
+    const city = document.getElementById("City").value ?? "";
+    const country = document.getElementById("Country").value ?? "";
+    const mail = document.getElementById("Mail").value ?? "";
+    const telephone = document.getElementById("Telephone").value ?? "";
+
+    try {
+      const API_URL =
+        "https://project-consulting-function-app.azurewebsites.net/api";
+
+      const body = JSON.stringify({
+        FirstName: firstName?.trim(),
+        LastName: lastName?.trim(),
+        Street: street,
+        HouseNumber: houseNumber,
+        PostalCode: postalCode,
+        City: city?.trim(),
+        Country: country?.trim(),
+        Mail: mail?.trim(),
+        Telephone: telephone,
+      });
+
+      const response = await fetch(`${API_URL}/matching`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body,
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      print(data);
+      showToast("Customer created or matched successfully!", true);
+
+      setTimeout(() => {
+        toggleLoading(false);
+        window.location.href = "/customers";
+      }, 1500);
+    } catch (error) {
+      toggleLoading(false);
+      showToast("Error: Customer creation failed", false);
+      console.error("Error:", error);
+    }
+  }
+</script>
+{% endblock %}
