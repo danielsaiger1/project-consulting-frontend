@@ -102,13 +102,14 @@
           <!-- Topbar -->
           <nav
             class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
-          ></nav>
+          >
+            <h1 class="h3 mb-0 text-gray-800">
+              {% block site_title %}Standardtitel{% endblock %}
+            </h1>
+          </nav>
 
           <!-- Main Content -->
           <div class="container-fluid">
-            <h1 class="h3 mb-2 text-gray-800">
-              {% block site_title %}Standardtitel{% endblock %}
-            </h1>
             <p class="mb-4">
               {% block site_description %}Standardbeschreibung{% endblock %}
             </p>
